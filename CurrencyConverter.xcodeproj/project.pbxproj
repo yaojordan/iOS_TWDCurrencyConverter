@@ -525,6 +525,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1eacebac-95b5-46cb-8453-99471353e6b2";
 				PROVISIONING_PROFILE_SPECIFIER = CurrencyConverter;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -542,6 +543,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1eacebac-95b5-46cb-8453-99471353e6b2";
 				PROVISIONING_PROFILE_SPECIFIER = CurrencyConverter;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

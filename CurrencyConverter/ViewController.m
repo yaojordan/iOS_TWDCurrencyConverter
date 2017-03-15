@@ -27,12 +27,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initPicker];
+    [self initPicker];//picker初始化
     self.pickerView.hidden = YES;
     self.pickerToolbar.hidden = YES;
     
-    self.inputText.keyboardType = UIKeyboardTypeDecimalPad;//呼叫帶小數點的鍵盤
-    //鍵盤上加toolbar
+    self.inputText.keyboardType = UIKeyboardTypeDecimalPad;//選到textfield時，呼叫帶小數點的鍵盤
+    //宣告鍵盤上的toolbar
     UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     numberToolbar.items = @[[[UIBarButtonItem alloc]initWithBarButtonSystemItem:
                              UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
@@ -66,15 +66,15 @@
 
 -(void)doneWithNumberPad{
     numberFromTheKeyboard = inputText.text;
-    [inputText resignFirstResponder];
+    [inputText resignFirstResponder];//鍵盤收起
     [self calculate];
 }
 
 
 -(IBAction)callPicker:(UIButton *)sender{
     //[self ViewAnimation:self.pickerView willHidden:NO];
-    self.pickerToolbar.hidden = NO;
     self.pickerView.hidden = NO;
+    self.pickerToolbar.hidden = NO;
 }
 //picker toolbar done
 - (IBAction)done:(id)sender {
@@ -362,15 +362,17 @@
         result = rateArr[18] * inputvalue;
     
     calResult.text = [NSString stringWithFormat:@"= %.2f 台幣(TWD)",result];
+    
 }
 
 
 
 
-/*呼叫pockerview的動畫設定
+//呼叫pockerview的動畫設定
+/*
 - (void)ViewAnimation:(UIView*)view willHidden:(BOOL)hidden {
     
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
         if (hidden) {
             view.frame = CGRectMake(0, 430, 375, 260);
         } else {
@@ -380,7 +382,8 @@
     } completion:^(BOOL finished) {
         [view setHidden:hidden];
     }];
-}*/
+}
+*/
 
 -(void)JumpAlert{
     UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:@"找不到網路連線，無法獲取即時匯率" preferredStyle:UIAlertControllerStyleAlert];
