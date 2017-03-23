@@ -72,13 +72,12 @@
 
 
 -(IBAction)callPicker:(UIButton *)sender{
-    //[self ViewAnimation:self.pickerView willHidden:NO];
     self.pickerView.hidden = NO;
     self.pickerToolbar.hidden = NO;
+    [self doneWithNumberPad];
 }
 //picker toolbar done
 - (IBAction)done:(id)sender {
-    //[self ViewAnimation:self.pickerView willHidden:YES];
     self.pickerView.hidden = YES;
     self.pickerToolbar.hidden = YES;
 }
@@ -88,7 +87,7 @@
 -(void)getXMLandParse
 {
     //GET xml from Yahoo finance
-    NSURL *url = [NSURL URLWithString:@"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDTWD%22,%22HKDTWD%22,%22GBPTWD%22,%22AUDTWD%22,%22CADTWD%22,%22SGDTWD%22,%22CHFTWD%22,%22JPYTWD%22,%22ZARTWD%22,%22SEKTWD%22,%22NZDTWD%22,%22THBTWD%22,%22PHPTWD%22,%22IDRTWD%22,%22EURTWD%22,%22KRWTWD%22,%22VNDTWD%22,%22MYRTWD%22,%22CNYTWD%22)&env=store://datatables.org/alltableswithkeys"];
+    NSURL *url = [NSURL URLWithString:@"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDTWD%22,%22HKDTWD%22,%22GBPTWD%22,%22AUDTWD%22,%22CADTWD%22,%22SGDTWD%22,%22CHFTWD%22,%22JPYTWD%22,%22ZARTWD%22,%22SEKTWD%22,%22NZDTWD%22,%22THBTWD%22,%22PHPTWD%22,%22IDRTWD%22,%22EURTWD%22,%22KRWTWD%22,%22VNDTWD%22,%22MYRTWD%22,%22CNYTWD%22,%22DKKTWD%22,%22NOKTWD%22,%22ISKTWD%22,%22TRYTWD%22)&env=store://datatables.org/alltableswithkeys"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSOperationQueue *queue = [NSOperationQueue new];
     
@@ -168,6 +167,11 @@
     [list2 addObject:@"越南-越南盾(VND)"];
     [list2 addObject:@"馬來西亞-馬幣(MYR)"];
     [list2 addObject:@"中國-人民幣(CNY)"];
+    ////-----------------------------------3/17/2017update
+    [list2 addObject:@"丹麥-丹麥克朗(DKK)"];
+    [list2 addObject:@"挪威-挪威克朗(NOK)"];
+    [list2 addObject:@"冰島-冰島克朗(ISK)"];
+    [list2 addObject:@"土耳其-土耳其里拉(TRY)"];
 }
 //產生的滾筒數
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -311,6 +315,31 @@
             currentDollar.text = (@"人民幣(CNY) : 台幣(TWD)");
             myDoubleNumber = [NSNumber numberWithDouble:rateArr[18]];
         }
+        //------------------------------------------------------------------3/17/2017
+        if([[list2 objectAtIndex:row] isEqualToString:@"丹麥-丹麥克朗(DKK)"]){
+            flagImage.image = [UIImage imageNamed:@"denmark.png"];
+            selrow=20;
+            currentDollar.text = (@"丹麥克朗(DKK) : 台幣(TWD)");
+            myDoubleNumber = [NSNumber numberWithDouble:rateArr[19]];
+        }
+        if([[list2 objectAtIndex:row] isEqualToString:@"挪威-挪威克朗(NOK)"]){
+            flagImage.image = [UIImage imageNamed:@"norway.png"];
+            selrow=21;
+            currentDollar.text = (@"挪威克朗(NOK) : 台幣(TWD)");
+            myDoubleNumber = [NSNumber numberWithDouble:rateArr[20]];
+        }
+        if([[list2 objectAtIndex:row] isEqualToString:@"冰島-冰島克朗(ISK)"]){
+            flagImage.image = [UIImage imageNamed:@"iceland.png"];
+            selrow=22;
+            currentDollar.text = (@"冰島克朗(ISK) : 台幣(TWD)");
+            myDoubleNumber = [NSNumber numberWithDouble:rateArr[21]];
+        }
+        if([[list2 objectAtIndex:row] isEqualToString:@"土耳其-土耳其里拉(TRY)"]){
+            flagImage.image = [UIImage imageNamed:@"turkey.png"];
+            selrow=23;
+            currentDollar.text = (@"土耳其里拉(TRY) : 台幣(TWD)");
+            myDoubleNumber = [NSNumber numberWithDouble:rateArr[22]];
+        }
         str = [myDoubleNumber stringValue];
         currentRate.text = [NSString stringWithFormat:@"1 : %@", str];
         [self calculate];
@@ -360,6 +389,15 @@
         result = rateArr[17] * inputvalue;
     if(selrow == 19)
         result = rateArr[18] * inputvalue;
+    ///----------------------------------------3/17/2017
+    if(selrow == 20)
+        result = rateArr[19] * inputvalue;
+    if(selrow == 21)
+        result = rateArr[20] * inputvalue;
+    if(selrow == 22)
+        result = rateArr[21] * inputvalue;
+    if(selrow == 23)
+        result = rateArr[22] * inputvalue;
     
     calResult.text = [NSString stringWithFormat:@"= %.2f 台幣(TWD)",result];
     
@@ -368,28 +406,13 @@
 
 
 
-//呼叫pockerview的動畫設定
-/*
-- (void)ViewAnimation:(UIView*)view willHidden:(BOOL)hidden {
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        if (hidden) {
-            view.frame = CGRectMake(0, 430, 375, 260);
-        } else {
-            [view setHidden:hidden];
-            view.frame = CGRectMake(0, 430, 375, 260);
-        }
-    } completion:^(BOOL finished) {
-        [view setHidden:hidden];
-    }];
-}
-*/
 
 -(void)JumpAlert{
     UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:@"找不到網路連線，無法獲取即時匯率" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"確認"style:UIAlertActionStyleDefault handler:^(UIAlertAction *alertAction){
+    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"再試一次"style:UIAlertActionStyleDefault handler:^(UIAlertAction *alertAction){
         //按鈕按下去之後執行的動作
         [self dismissViewControllerAnimated:YES completion:nil];
+        [self viewDidAppear:YES];
     }];
     //把確定按鈕加到controller
     [alert addAction:alertAction];
