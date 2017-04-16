@@ -1,9 +1,13 @@
 # iOS_TWDCurrencyConverter
 
-重點: 
-1.pickerview的使用 
-2.從URL取得xml
-3.xml剖析
+重點:  
+
+1.pickerview的使用  
+
+2.從URL取得xml  
+
+3.xml剖析  
+
 
 取得Yahoo Finance API的匯率XML檔案，解析之後存到陣列中。用戶輸入數字並用picker選擇想要計算的幣值，計算出這個幣值換成台幣之後的價格。
 
