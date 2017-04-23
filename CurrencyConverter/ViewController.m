@@ -54,7 +54,7 @@
     {
         [self getXMLandParse];
     }
-    [activityindicatorView stopAnimating];//神奇轉轉轉結束
+    [activityindicatorView stopAnimating];//spinner停止
     //初始顯示美金, 美金匯率
     flagImage.image = [UIImage imageNamed:@"usa.png"];
     currentDollar.text = @"美金(USD) : 台幣(TWD)";
@@ -100,7 +100,7 @@
                                if([data length] > 0 && error == nil)
                                {
                                    NSString *currency = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                   //NSLog(@"%@", currency);
+                                   NSLog(@"%@", currency);
                                    //印出xml內容
                                }
                                else
@@ -410,7 +410,7 @@
 -(void)JumpAlert{
     UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:@"找不到網路連線，無法獲取即時匯率" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"再試一次"style:UIAlertActionStyleDefault handler:^(UIAlertAction *alertAction){
-        //按鈕按下去之後執行的動作
+        //按鈕按下去之後執行的動作，dismiss這個彈匡，重新到viewDidAppear檢查
         [self dismissViewControllerAnimated:YES completion:nil];
         [self viewDidAppear:YES];
     }];

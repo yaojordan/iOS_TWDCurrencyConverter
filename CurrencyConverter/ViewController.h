@@ -14,11 +14,6 @@
     NSMutableArray *list2;//之後再增加list1
     NSString *numberFromTheKeyboard;
     NSNumber *myDoubleNumber;//把string轉成double用, 讓匯率數字可以傳給label
-    
-    /*__weak IBOutlet UILabel *calResult;
-    __weak IBOutlet UILabel *currentRate;
-    __weak IBOutlet UITextField *inputText;
-    __weak IBOutlet UILabel *currentDollar;*///選擇的幣值
 }
 
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
